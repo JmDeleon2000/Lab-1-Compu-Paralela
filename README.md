@@ -1,5 +1,5 @@
-# Build
+## Build
 make 
 
-# Cleanup
+## Cleanup
 make clean
