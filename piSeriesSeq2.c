@@ -2,18 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double pi(int, int);
+double pi(int);
 
 int main(int argc, char* argv[])
 {
     int N = 10000000;
-    int thread_count = 2;
-    if (argc > 2)
+    if (argc > 1)
         N = strtol(argv[1], NULL, 10);
-        thread_count = strtol(argv[2], NULL, 10);
 
     double start_t = omp_get_wtime();
-    double piAprox = pi(N, thread_count);
+    double piAprox = pi(N);
     double end_t = omp_get_wtime();
 
 
@@ -24,13 +22,11 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-double pi(int n, int thread_count)
+double pi(int n)
 {
     double factor = 1.0;
     double sum = 0.0;
 
-    #pragma omp parallel for num_threads(thread_count) \
-    reduction(+:sum)
     for(int k = 0; k < n; k++)
     {
         factor = (k % 2 == 0) ? 1.0 : -1.0;
