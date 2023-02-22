@@ -6,8 +6,8 @@ double pi(int, int);
 
 int main(int argc, char* argv[])
 {
-    int N = 10e6;
-    int thread_count = 2;
+    int N = 1.0e9;
+    int thread_count = 12;
     if (argc > 2)
         N = strtol(argv[1], NULL, 10);
         thread_count = strtol(argv[2], NULL, 10);
